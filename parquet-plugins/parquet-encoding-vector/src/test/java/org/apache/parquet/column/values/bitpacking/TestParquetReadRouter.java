@@ -20,6 +20,8 @@ package org.apache.parquet.column.values.bitpacking;
 
 import org.apache.parquet.bytes.ByteBufferInputStream;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -27,6 +29,7 @@ import java.nio.ByteBuffer;
 import static org.junit.Assert.assertArrayEquals;
 
 public class TestParquetReadRouter {
+  private static final Logger LOG = LoggerFactory.getLogger(TestParquetReadRouter.class);
 
   private static final int minBitWidth = 1;
   private static final int maxBitWidth = 32;
@@ -37,6 +40,10 @@ public class TestParquetReadRouter {
 
   @Test
   public void testRead() throws IOException {
+    if (ParquetReadRouter.getSupportVectorFromCPUFlags() != VectorSupport.VECTOR_512) {
+      LOG.info("avx512vbmi and avx512_vbmi2 are not supported, skip this test.");
+      return;
+    }
     for (int bitWidth=minBitWidth; bitWidth <= maxBitWidth; bitWidth++) {
       byte[] input = new byte[outputValues * bitWidth / 8];
       for (int i = 0; i < input.length; i++) {
