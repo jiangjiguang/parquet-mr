@@ -46,7 +46,7 @@ jobs:
           lscpu
           EXTRA_JAVA_TEST_ARGS=$(mvn help:evaluate -Dexpression=extraJavaTestArgs -q -DforceStdout)
           export MAVEN_OPTS="$MAVEN_OPTS $EXTRA_JAVA_TEST_ARGS"
-          mvn install --batch-mode -Pvector-plugins -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true -Djava.version=${{ matrix.java }}
+          mvn install --batch-mode -Pvector-plugins -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true -Djava.version=${{ matrix.java }} -pl -parquet-hadoop,-parquet-arrow,-parquet-avro,-parquet-benchmarks,-parquet-cli,-parquet-column,-parquet-hadoop-bundle,-parquet-jackson,-parquet-pig,-parquet-pig-bundle,-parquet-protobuf,-parquet-thrift
       - name: verify
         env:
           TEST_CODECS: ${{ matrix.codes }}
