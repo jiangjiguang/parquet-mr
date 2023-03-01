@@ -509,6 +509,7 @@
         <version>${japicmp.version}</version>
         <configuration>
           <parameter>
+            <ignoreMissingOldVersion>true</ignoreMissingOldVersion>
             <oldVersionPattern>${previous.version}</oldVersionPattern>
             <breakBuildOnSourceIncompatibleModifications>true</breakBuildOnSourceIncompatibleModifications>
             <onlyModified>true</onlyModified>
