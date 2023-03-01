@@ -103,6 +103,16 @@
       </plugin>
 
       <plugin>
+        <groupId>com.github.siom79.japicmp</groupId>
+        <artifactId>japicmp-maven-plugin</artifactId>
+        <configuration>
+          <parameter>
+            <ignoreMissingOldVersion>true</ignoreMissingOldVersion>
+          </parameter>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.3.0</version>
