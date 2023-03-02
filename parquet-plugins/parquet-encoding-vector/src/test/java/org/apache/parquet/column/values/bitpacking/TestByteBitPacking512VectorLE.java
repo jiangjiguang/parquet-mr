@@ -34,10 +34,6 @@ public class TestByteBitPacking512VectorLE {
 
   @Test
   public void unpackValuesUsingVector() {
-    if (ParquetReadRouter.getSupportVectorFromCPUFlags() != VectorSupport.VECTOR_512) {
-      LOG.info("avx512vbmi and avx512_vbmi2 are not supported, skip this test.");
-      return;
-    }
     for(int i=1; i<=32; i++) {
       unpackValuesUsingVectorBitWidth(i);
     }
